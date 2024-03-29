@@ -9,10 +9,10 @@ router
     
     // Items
     .get('/items', controller.getItems)
-    .post('/item', controller.addItem)
+    .post('/items', controller.addItem)
 
     // Pricing
     .get('/pricings', controller.getPricings)
-    .post('/pricing', controller.getTotalPricing)
+    .post('/pricings', controller.getTotalPricing) // get total price
 
 module.exports = router;

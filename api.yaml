@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Food Delivery App - RestApis
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 1.0
+
+servers:
+  - url: http://localhost:3000/
+    description: Local server
+  - url: https://prod.com/
+    description: Pre Production server
+  - url: https://test.com/
+    description: Production server
+
+components:
+  securitySchemes:
+    ApiTokenss:        # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+    ApiKey:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: apikey
+
+paths:
+  /api/v1/food:
+    get:
+      tags:
+        - getOrganization
+      summary: Returns organization details.
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - addOrganization
+      summary: Adds a new organization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Organization added successfully.
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+  /api/v1/food/items:
+    get:
+      tags:
+        - getItems
+      summary: Returns items details.
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - addItem
+      summary: Adds a new item.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Items added successfully.
+        '400':
+          description: Invalid request.
+
+  /api/v1/food/pricings:
+    get:
+      tags:
+        - getPricings
+      summary: Returns pricings details.
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+        - getTotalPricing
+      summary: Calculates total pricing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                zone:
+                  type: string
+                organization_id:
+                  type: integer
+                total_distance:
+                  type: number
+                item_type:
+                  type: string
+      responses:
+        '200':
+          description: Total pricing calculated successfully.
+        '400':
+          description: Invalid request.
+
