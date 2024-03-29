@@ -7,9 +7,7 @@ info:
 servers:
   - url: http://localhost:3000/
     description: Local server
-  - url: https://prod.com/
-    description: Pre Production server
-  - url: https://test.com/
+  - url: https://fooddeliveryassignmentpostgresqlandnodej.onrender.com/
     description: Production server
 
 components:
